@@ -16,12 +16,4 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run your tests
-        run: npx playwright test --reporter=html
-      - name: Uploading artifact
-        uses: actions/upload-artifact@v2
-        if: always()
-        with:
-          name: playwright report
-          run: npx playwright show-report
-          path: playwright-report
-          retention-days: 30
+        run: npx playwright test --reporter=list
