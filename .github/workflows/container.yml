@@ -17,15 +17,20 @@ jobs:
         run: npm ci
       - name: Run your tests
         run: npx playwright test --reporter=html
+      - name: Publish report to GitHub Pages
+        if: always()
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git checkout gh-pages
+          git add .
+          git commit -m "Update test report"
+          git push origin gh-pages --force
       - name: Upload test results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: playwright-report
           path: playwright-report
-      - name: Publish report to GitHub Pages
-        if: always()
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
