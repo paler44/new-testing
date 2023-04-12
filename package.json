@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/paler44/new-testing#readme",
   "dependencies": {
-    "@playwright/test": "^1.32.2"
+    "@playwright/test": "^1.32.2",
+    "jq": "^1.7.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.58.0",
