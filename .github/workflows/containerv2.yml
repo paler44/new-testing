@@ -82,6 +82,11 @@ jobs:
                   short: true
                 },
                 {
+                  title: 'Test report',
+                  value: 'https://paler44.github.io/new-testing/',
+                  short: true
+                },
+                {
                   title: 'Workflow',
                   value: `${process.env.AS_WORKFLOW}`,
                   short: true
