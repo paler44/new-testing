@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test("login", async ({ page }) => {
+  //test
   await page.goto("https://ml-panel-fe-dev-3.herokuapp.com/logowanie");
   const loginButton = page.locator(".button-primary");
   await expect(loginButton).toBeVisible();
@@ -14,5 +15,5 @@ test("login", async ({ page }) => {
   const logoutButton = page.locator("div.navigation-footer-link");
   await expect(logoutButton).toBeVisible();
   await logoutButton.click();
-  await expect(loginButton).toContainText("dupa");
+  await expect(loginButton).toBeVisible();
 });
