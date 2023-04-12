@@ -15,5 +15,5 @@ test("login", async ({ page }) => {
   const logoutButton = page.locator("div.navigation-footer-link");
   await expect(logoutButton).toBeVisible();
   await logoutButton.click();
-  await expect(loginButton).toBeVisible();
+  await expect(loginButton).toContainText("jsjsj");
 });
