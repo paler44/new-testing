@@ -82,11 +82,6 @@ jobs:
                   short: true
                 },
                 {
-                  title: 'Execution Time',
-                  value: `${process.env.AS_TOOK}`,
-                  short: true
-                },
-                {
                   title: 'Workflow',
                   value: `${process.env.AS_WORKFLOW}`,
                   short: true
@@ -109,4 +104,4 @@ jobs:
               }]
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
