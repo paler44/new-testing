@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Install jq
-        run: apk add jq
+        run: apt-get update && apt-get install -y jq
 
       - name: Run your tests
         run: npx playwright test
