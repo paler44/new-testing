@@ -30,14 +30,16 @@ jobs:
       - name: Read Summary Report to Get Test Results
         if: always()
         run: |
-          STATUS=$(cat ./summary.json | jq -r '.status')
-          echo "STATUS=$STATUS" >> $GITHUB_ENV 
-          PASSED=$(cat ./summary.json | jq -r '.passed[]' | tr '\n' ' ')
-          echo "PASSED=$PASSED" >> $GITHUB_ENV 
-          TIMEOUT=$(cat ./summary.json | jq -r '.timedOut[]' | tr '\n' ' ' | sed 's/ /--->TIMEOUT /g')
-          FAILURES=$(cat ./summary.json | jq -r '.failed[]' | tr '\n' ' ')
-          FAILURES+=$TIMEOUT
-          echo "FAILURES=$FAILURES" >> $GITHUB_ENV
+          bash -c '
+            STATUS=$(cat ./summary.json | jq -r ".status")
+            echo "STATUS=$STATUS" >> $GITHUB_ENV
+            PASSED=$(cat ./summary.json | jq -r ".passed[]" | tr "\n" " ")
+            echo "PASSED=$PASSED" >> $GITHUB_ENV
+            TIMEOUT=$(cat ./summary.json | jq -r ".timedOut[]" | tr "\n" " " | sed "s/ /--->TIMEOUT /g")
+            FAILURES=$(cat ./summary.json | jq -r ".failed[]" | tr "\n" " ")
+            FAILURES+=$TIMEOUT
+            echo "FAILURES=$FAILURES" >> $GITHUB_ENV
+            '
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v2
